@@ -11,8 +11,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from azure.storage.blob import BlobServiceClient
 
 # Variables d'environnement pour votre connexion Blob Storage
-CONNECTION_STRING = os.environ.get("DefaultEndpointsProtocol=https;AccountName=recommandationselhia;AccountKey=eziytrCRHtJNKYbl3ZzAYEtIN9vyV6HehZTK+K4xJ2qtqg4nQkzVqwPrKdMTZFxFcptkVSOIGlGA+AStIVgqnQ==;EndpointSuffix=core.windows.net")
-CONTAINER_NAME = os.environ.get("recommandationselhia")
+CONNECTION_STRING = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+CONTAINER_NAME = os.environ.get("AZURE_STORAGE_CONTAINER_NAME")
 BLOB_NAME = "trained_model_and_assets.pkl"
 
 # Utiliser une variable globale pour mettre en cache le modèle
