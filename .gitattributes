@@ -1,0 +1,1 @@
+articles_recommandation/azure-function/trained_model_and_assets.pkl filter=lfs diff=lfs merge=lfs -text
