@@ -1,0 +1,6 @@
+azure-functions
+pandas
+numpy
+surprise==1.1.4
+scikit-learn
+azure-storage-blob

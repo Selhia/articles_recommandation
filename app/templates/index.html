@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommandation d'Articles</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        h1 { text-align: center; }
+        form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+        input[type="text"] { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #results { margin-top: 2rem; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Système de Recommandation d'Articles</h1>
+        <form id="recoForm">
+            <label for="userId">Entrez un ID utilisateur:</label>
+            <input type="text" id="userId" name="user_id" required>
+            <button type="submit">Obtenir les recommandations</button>
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('recoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('userId').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Chargement...</p>';
+
+            fetch('/recommend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ user_id: userId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultsDiv.innerHTML = '';
+                if (data.error) {
+                    resultsDiv.innerHTML = `<p class="error">Erreur: ${data.error}</p>`;
+                } else if (data.length > 0) {
+                    resultsDiv.innerHTML = '<h2>Recommandations:</h2>';
+                    const list = document.createElement('ul');
+                    data.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `Article ID: ${item.article_id}`;
+                        list.appendChild(listItem);
+                    });
+                    resultsDiv.appendChild(list);
+                } else {
+                    resultsDiv.innerHTML = '<p>Aucune recommandation trouvée pour cet utilisateur.</p>';
+                }
+            })
+            .catch(error => {
+                resultsDiv.innerHTML = `<p class="error">Erreur: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
