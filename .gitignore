@@ -1,2 +1,6 @@
-# Fichiers de modèles de données et d'assets trop volumineux
+# Fichiers volumineux et sensibles à ne pas versionner
 trained_model_and_assets.pkl
+.env
+__pycache__/
+*.pyc
+.DS_Store
