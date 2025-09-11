@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=recommandationselhia;AccountKey=eziytrCRHtJNKYbl3ZzAYEtIN9vyV6HehZTK+K4xJ2qtqg4nQkzVqwPrKdMTZFxFcptkVSOIGlGA+AStIVgqnQ==;EndpointSuffix=core.windows.net",
+    "AZURE_STORAGE_CONTAINER_NAME": "recommandation"
+  }
+}
