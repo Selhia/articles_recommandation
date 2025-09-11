@@ -8,7 +8,7 @@ app = Flask(__name__)
 AZURE_FUNCTION_URL_BASE = "https://recommandationapp-bed3ftg0apbce2a4.francecentral-01.azurewebsites.net/api/RecommenderFunction"
 
 # Votre clé d'authentification
-AZURE_FUNCTION_CODE = "I6g5w-LElDwADCIEAfqF6wfEvJPJDjVrZL5YgUSzli4NAzFuZlFCgQ=="
+AZURE_FUNCTION_CODE = "<code_here>"
 
 @app.route('/')
 def index():
