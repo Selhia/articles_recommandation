@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 # URL de base de votre fonction Azure (sans les paramètres)
 # Assurez-vous que cette URL est correcte et qu'elle ne contient pas le paramètre '?code='
-AZURE_FUNCTION_URL_BASE = "https://recommandationapp-bed3ftg0apbce2a4.francecentral-01.azurewebsites.net/api/RecommenderFunction"
+AZURE_FUNCTION_URL_BASE = "<VOTRE_URL_DE_FONCTION_AZURE_SANS_PARAMETRE>"
 
 # Votre clé d'authentification
-AZURE_FUNCTION_CODE = "<code_here>"
+AZURE_FUNCTION_CODE = "<VOTRE_CLEF_D_AUTHENTIFICATION>"
 
 @app.route('/')
 def index():

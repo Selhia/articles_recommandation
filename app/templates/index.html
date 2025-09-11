@@ -44,17 +44,13 @@
                 resultsDiv.innerHTML = '';
                 if (data.error) {
                     resultsDiv.innerHTML = `<p class="error">Erreur: ${data.error}</p>`;
-                } else if (data.length > 0) {
-                    resultsDiv.innerHTML = '<h2>Recommandations:</h2>';
-                    const list = document.createElement('ul');
-                    data.forEach(item => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `Article ID: ${item.article_id}`;
-                        list.appendChild(listItem);
-                    });
-                    resultsDiv.appendChild(list);
-                } else {
-                    resultsDiv.innerHTML = '<p>Aucune recommandation trouvée pour cet utilisateur.</p>';
+                } else if (data.recommendations && data.recommendations.length > 0) {
+                        const ids = data.recommendations.map(item => item.article_id);
+                        resultsDiv.innerHTML = `<h2>Articles :</h2><p>${ids.join(", ")}</p>`;
+                    } else {
+    resultsDiv.innerHTML = '<p>Aucune recommandation trouvée pour cet utilisateur.</p>';
+
+
                 }
             })
             .catch(error => {

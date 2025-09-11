@@ -15,6 +15,7 @@ CONNECTION_STRING = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
 CONTAINER_NAME = os.environ.get("AZURE_STORAGE_CONTAINER_NAME")
 BLOB_NAME = "trained_model_and_assets.pkl"
 
+
 # Utiliser une variable globale pour mettre en cache le modèle
 global model_assets
 model_assets = None
@@ -132,7 +133,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if model_assets is None:
             return func.HttpResponse(
                 "Le service de recommandation n'est pas disponible pour le moment.",
-                status_code=503
+                status_code=503,
+                headers={"Access-Control-Allow-Origin": "*"}
             )
 
     user_id_str = req.params.get('user_id')
@@ -142,7 +144,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         except ValueError:
             return func.HttpResponse(
                 "Veuillez passer un 'user_id' dans la chaîne de requête ou le corps de la requête.",
-                status_code=400
+                status_code=400,
+                headers={"Access-Control-Allow-Origin": "*"}
             )
         else:
             user_id_str = req_body.get('user_id')
@@ -159,15 +162,18 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse(
                 json.dumps(response_data, indent=4),
                 mimetype="application/json",
-                status_code=200
+                status_code=200,
+                headers={"Access-Control-Allow-Origin": "*"}
             )
         except (ValueError, KeyError) as e:
             return func.HttpResponse(
                 f"Erreur lors du traitement de l'ID utilisateur ou du modèle: {str(e)}",
-                status_code=500
+                status_code=500,
+                headers={"Access-Control-Allow-Origin": "*"}
             )
     else:
         return func.HttpResponse(
             "Veuillez fournir un ID utilisateur valide.",
-            status_code=400
+            status_code=400,
+            headers={"Access-Control-Allow-Origin": "*"}
         )

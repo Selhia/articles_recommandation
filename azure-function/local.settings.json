@@ -5,6 +5,12 @@
     "FUNCTIONS_WORKER_RUNTIME": "python",
 
     "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=recommandationselhia;AccountKey=eziytrCRHtJNKYbl3ZzAYEtIN9vyV6HehZTK+K4xJ2qtqg4nQkzVqwPrKdMTZFxFcptkVSOIGlGA+AStIVgqnQ==;EndpointSuffix=core.windows.net",
-    "AZURE_STORAGE_CONTAINER_NAME": "recommandation"
+    "AZURE_STORAGE_CONTAINER_NAME": "recommandation",
+
+    //# Assurez-vous que cette URL est correcte et qu'elle ne contient pas le paramètre '?code='//
+    "AZURE_FUNCTION_URL_BASE" : "https://recommandationapp-bed3ftg0apbce2a4.francecentral-01.azurewebsites.net/api/RecommenderFunction",
+
+    // # Votre clé d'authentification//
+    "AZURE_FUNCTION_CODE" : "I6g5w-LElDwADCIEAfqF6wfEvJPJDjVrZL5YgUSzli4NAzFuZlFCgQ=="
   }
 }
